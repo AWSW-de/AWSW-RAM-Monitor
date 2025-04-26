@@ -34,4 +34,4 @@ Dateien:
 Prozess Namen ermitteln in PowerShell mit:
 Get-Process
 
-<img src="./image.png">
+<img src="./image_graph.png">
