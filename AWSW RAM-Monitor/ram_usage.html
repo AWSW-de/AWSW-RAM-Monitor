@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html><head>
+<title>RAM Monitor</title>
+<script src="./chart.js"></script>
+<style>
+body { font-family: Arial; }
+.legend-container { display: flex; justify-content: space-between; flex-wrap: wrap; margin-top: 20px; }
+.legend { display: flex; flex-wrap: wrap; font-size: 14px; }
+.legend-item { margin-right: 15px; display: flex; align-items: center; cursor: pointer; padding: 3px 5px; margin-bottom: 5px; }
+.legend-item:hover { background-color: #f0f0f0; border-radius: 5px; }
+.color-box { width: 12px; height: 12px; margin-right: 5px; display: inline-block; }
+.buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.refresh-button { padding: 5px 10px; font-size: 12px; }
+#ramChart { width: 100%; height: 65vh; max-height: 65vh; }
+.live-table { margin-top: 30px; }
+.live-table table { width: 60%; border-collapse: collapse; }
+.live-table th, .live-table td { padding: 8px; text-align: center; border: 1px solid #ccc; font-size: 14px; }
+</style>
+</head><body>
+<h2>RAM-Auslastung der Prozesse:</h2>
+<div class='legend-container'>
+<div class='legend' id='customLegend'>
+<div class='legend-item' onclick='toggleDataset("powershell")'><div class='color-box' style='background-color: #FF0000;'></div><span title='Aktueller Verbrauch: 93.41 MB'>powershell</span></div>
+ <div class='legend-item' onclick='toggleDataset("explorer")'><div class='color-box' style='background-color: #0000FF;'></div><span title='Aktueller Verbrauch: 344.2 MB'>explorer</span></div>
+ <div class='legend-item' onclick='toggleDataset("notepad")'><div class='color-box' style='background-color: #00FF00;'></div><span title='Aktueller Verbrauch: 0 MB'>notepad</span></div>
+ <div class='legend-item' onclick='toggleDataset("firefox")'><div class='color-box' style='background-color: #00FFFF;'></div><span title='Aktueller Verbrauch: 1076.7 MB'>firefox</span></div>
+
+</div>
+<div class='buttons'>
+<button class='refresh-button' onclick='location.reload();'>Seite aktualisieren</button>
+<button class='refresh-button' onclick='showAll();'>Alle Linien anzeigen</button>
+<button class='refresh-button' onclick='hideAll();'>Alle Linien verstecken</button>
+</div>
+</div>
+<canvas id='ramChart'></canvas>
+<div class='live-table'>
+<h3>Aktuelle RAM-Auslastung</h3>
+<table>
+<thead><tr><th>Prozess</th><th>RAM (MB)</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>powershell</td><td>93.41</td><td style='color:green;'>OK < 1000MB</td></tr>
+ <tr><td>explorer</td><td>344.2</td><td style='color:green;'>OK < 350MB</td></tr>
+ <tr><td>notepad</td><td>0</td><td style='color:green;'>OK < 100MB</td></tr>
+ <tr><td>firefox</td><td>1076.7</td><td style='color:green;'>OK < 1500MB</td></tr>
+
+</tbody>
+</table>
+</div>
+<script>
+const ctx = document.getElementById('ramChart').getContext('2d');
+const ramChart = new Chart(ctx, {
+type: 'line',
+data: { labels: ["2025-04-26 18:32:42", "2025-04-26 18:32:57", "2025-04-26 18:33:12"], datasets: [{label: 'powershell', data: [82,58, 90,11, 93,41], borderColor: '#FF0000', borderWidth: 2, fill: false, hidden: false},{label: 'explorer', data: [345,06, 344,3, 344,2], borderColor: '#0000FF', borderWidth: 2, fill: false, hidden: false},{label: 'notepad', data: [0, 0, 0], borderColor: '#00FF00', borderWidth: 2, fill: false, hidden: false},{label: 'firefox', data: [1025,96, 1146,56, 1076,7], borderColor: '#00FFFF', borderWidth: 2, fill: false, hidden: false}] },
+options: {
+responsive: true,
+animation: { duration: 1000 },
+plugins: { legend: { display: false } }
+}
+});
+function toggleDataset(label) { const dataset = ramChart.data.datasets.find(d => d.label === label); dataset.hidden = !dataset.hidden; ramChart.update(); }
+function showAll() { ramChart.data.datasets.forEach(d => d.hidden = false); ramChart.update(); }
+function hideAll() { ramChart.data.datasets.forEach(d => d.hidden = true); ramChart.update(); }
+setInterval(() => { location.reload(); }, 30000);
+</script>
+</body></html>

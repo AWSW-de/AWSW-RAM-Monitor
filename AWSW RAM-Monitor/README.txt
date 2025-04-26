@@ -1,8 +1,3 @@
-# AWSW-RAM-Monitor
-
-AWSW RAM-Monitor for processes to watch their RAM usage
-
-
 
 RAM Monitor - PowerShell Skript (FINAL)
 ---------------------------------------
@@ -33,5 +28,3 @@ Dateien:
 
 Prozess Namen ermitteln in PowerShell mit:
 Get-Process
-
-<img src="./image.png">
