@@ -20,10 +20,10 @@ body { font-family: Arial; }
 <h2>RAM-Auslastung der Prozesse:</h2>
 <div class='legend-container'>
 <div class='legend' id='customLegend'>
-<div class='legend-item' onclick='toggleDataset("powershell")'><div class='color-box' style='background-color: #FF0000;'></div><span title='Aktueller Verbrauch: 93.41 MB'>powershell</span></div>
- <div class='legend-item' onclick='toggleDataset("explorer")'><div class='color-box' style='background-color: #0000FF;'></div><span title='Aktueller Verbrauch: 344.2 MB'>explorer</span></div>
- <div class='legend-item' onclick='toggleDataset("notepad")'><div class='color-box' style='background-color: #00FF00;'></div><span title='Aktueller Verbrauch: 0 MB'>notepad</span></div>
- <div class='legend-item' onclick='toggleDataset("firefox")'><div class='color-box' style='background-color: #00FFFF;'></div><span title='Aktueller Verbrauch: 1076.7 MB'>firefox</span></div>
+<div class='legend-item' onclick='toggleDataset("powershell")'><div class='color-box' style='background-color: #FFF000;'></div><span title='Aktueller Verbrauch: 92.38 MB'>powershell</span></div>
+ <div class='legend-item' onclick='toggleDataset("explorer")'><div class='color-box' style='background-color: #0000FF;'></div><span title='Aktueller Verbrauch: 379.13 MB'>explorer</span></div>
+ <div class='legend-item' onclick='toggleDataset("notepad")'><div class='color-box' style='background-color: #00FF00;'></div><span title='Aktueller Verbrauch: 85.86 MB'>notepad</span></div>
+ <div class='legend-item' onclick='toggleDataset("firefox")'><div class='color-box' style='background-color: #00FFFF;'></div><span title='Aktueller Verbrauch: 0 MB'>firefox</span></div>
 
 </div>
 <div class='buttons'>
@@ -38,10 +38,10 @@ body { font-family: Arial; }
 <table>
 <thead><tr><th>Prozess</th><th>RAM (MB)</th><th>Status</th></tr></thead>
 <tbody>
-<tr><td>powershell</td><td>93.41</td><td style='color:green;'>OK < 1000MB</td></tr>
- <tr><td>explorer</td><td>344.2</td><td style='color:green;'>OK < 350MB</td></tr>
- <tr><td>notepad</td><td>0</td><td style='color:green;'>OK < 100MB</td></tr>
- <tr><td>firefox</td><td>1076.7</td><td style='color:green;'>OK < 1500MB</td></tr>
+<tr><td>powershell</td><td>92.38</td><td style='color:green;'>OK < 1000MB</td></tr>
+ <tr><td>explorer</td><td>379.13</td><td style='color:green;'>OK < 500MB</td></tr>
+ <tr><td>notepad</td><td>85.86</td><td style='color:green;'>OK < 100MB</td></tr>
+ <tr><td>firefox</td><td>0</td><td style='color:green;'>OK < 1500MB</td></tr>
 
 </tbody>
 </table>
@@ -50,7 +50,7 @@ body { font-family: Arial; }
 const ctx = document.getElementById('ramChart').getContext('2d');
 const ramChart = new Chart(ctx, {
 type: 'line',
-data: { labels: ["2025-04-26 18:32:42", "2025-04-26 18:32:57", "2025-04-26 18:33:12"], datasets: [{label: 'powershell', data: [82,58, 90,11, 93,41], borderColor: '#FF0000', borderWidth: 2, fill: false, hidden: false},{label: 'explorer', data: [345,06, 344,3, 344,2], borderColor: '#0000FF', borderWidth: 2, fill: false, hidden: false},{label: 'notepad', data: [0, 0, 0], borderColor: '#00FF00', borderWidth: 2, fill: false, hidden: false},{label: 'firefox', data: [1025,96, 1146,56, 1076,7], borderColor: '#00FFFF', borderWidth: 2, fill: false, hidden: false}] },
+data: { labels: ["2025-04-26 18:44:42", "2025-04-26 18:44:56", "2025-04-26 18:44:57", "2025-04-26 18:45:11", "2025-04-26 18:45:12", "2025-04-26 18:45:26", "2025-04-26 18:45:27", "2025-04-26 18:45:41", "2025-04-26 18:45:42", "2025-04-26 18:45:56", "2025-04-26 18:45:57", "2025-04-26 18:46:11", "2025-04-26 18:46:12", "2025-04-26 18:46:26", "2025-04-26 18:46:28", "2025-04-26 18:46:41", "2025-04-26 18:46:56"], datasets: [{label: 'powershell', data: [176,93, 183,91, 184,54, 188,54, 188,49, 188,43, 186,23, 186,34, 182,69, 182,58, 184,25, 183,39, 184,07, 173,16, 174,34, 91,2, 92,38], borderColor: '#FFF000', borderWidth: 2, fill: false, hidden: false},{label: 'explorer', data: [373,03, 372,98, 372,98, 371,86, 371,69, 371,66, 371,66, 371,66, 371,66, 371,4, 371,39, 371,13, 371,14, 370,91, 370,91, 370,33, 379,13], borderColor: '#0000FF', borderWidth: 2, fill: false, hidden: false},{label: 'notepad', data: [85,92, 85,92, 85,92, 85,92, 85,92, 85,92, 85,92, 85,92, 85,92, 85,92, 85,92, 85,92, 85,92, 85,86, 85,86, 85,86, 85,86], borderColor: '#00FF00', borderWidth: 2, fill: false, hidden: false},{label: 'firefox', data: [18,02, 907,26, 892,74, 1099, 1341,29, 1517,51, 1518,41, 1170,35, 1172,09, 1593,02, 1527,71, 2074,54, 2102,86, 2088,37, 2083,07, 0, 0], borderColor: '#00FFFF', borderWidth: 2, fill: false, hidden: false}] },
 options: {
 responsive: true,
 animation: { duration: 1000 },

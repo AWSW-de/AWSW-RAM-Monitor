@@ -4,7 +4,7 @@
 # === Konfiguration ===
 $prozessNamen = @("powershell", "explorer", "notepad", "firefox")
 $prozessFarben = @{
-    "powershell" = "#FF0000"
+    "powershell" = "#FF00FF"
     "explorer" = "#0000FF"
     "notepad" = "#00FF00"
     "firefox" = "#00FFFF"
@@ -12,9 +12,9 @@ $prozessFarben = @{
 # Limits für Anzeig der Warnung in der Legende
 $prozessWarnschwellen = @{
     "powershell" = 1000
-    "explorer" = 350
+    "explorer" = 500
     "notepad" = 100
-    "firefox" = 1500
+    "firefox" = 3500
 }
 $intervallSekunden = 15
 $maxDateiGroesseMB = 10
